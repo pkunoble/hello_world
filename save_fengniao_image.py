@@ -6,10 +6,18 @@ import urlparse
 import re
 import sys
 
-
+# This function is used to get image ID from image url.
 def GetImageFileName(image_url):
   parsed = urlparse.urlparse(image_url)
   return os.path.basename(parsed.path)
+
+# Comparing to image name, page name is better to be saved file name as 
+# images from the same topic can be put together.
+def GetPageName(page_url):
+  parsed = urlparse.urlparse(page_url)
+  base_name =  os.path.basename(parsed.path)
+  base_name = base_name[:base_name.index(".htm")]
+  return base_name
 
 
 kImageUrlPattern = re.compile(r'var gbig_pic = "(.+)"')
