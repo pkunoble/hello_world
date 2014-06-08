@@ -37,7 +37,8 @@ def SaveImage(page_url):
     return False
 
   image_data = urllib2.urlopen(image_url).read()
-  writer = open(GetImageFileName(image_url), "wb")
+  file_name = "_".join([GetPageName(page_url), GetImageFileName(image_url)])
+  writer = open(file_name, "wb")
   writer.write(image_data)
   return True
 
